@@ -1,0 +1,12 @@
+C:\Users\Amir\source\repos\Assignment2\bin\Debug\Assignment2.exe.config
+C:\Users\Amir\source\repos\Assignment2\bin\Debug\Assignment2.exe
+C:\Users\Amir\source\repos\Assignment2\bin\Debug\Assignment2.pdb
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.csprojAssemblyReference.cache
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.MainScreen.resources
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.Properties.Resources.resources
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.csproj.GenerateResource.cache
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.exe
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.pdb
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.Home.resources
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.New_User.resources
+C:\Users\Amir\source\repos\Assignment2\obj\Debug\Assignment2.Login.resources
