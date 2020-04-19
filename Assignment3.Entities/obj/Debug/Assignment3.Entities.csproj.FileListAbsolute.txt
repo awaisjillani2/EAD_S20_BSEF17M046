@@ -1,0 +1,4 @@
+C:\Users\mehak\source\repos\Assignment_3\Assignment3.Entities\bin\Debug\Assignment3.Entities.dll
+C:\Users\mehak\source\repos\Assignment_3\Assignment3.Entities\bin\Debug\Assignment3.Entities.pdb
+C:\Users\mehak\source\repos\Assignment_3\Assignment3.Entities\obj\Debug\Assignment3.Entities.dll
+C:\Users\mehak\source\repos\Assignment_3\Assignment3.Entities\obj\Debug\Assignment3.Entities.pdb
