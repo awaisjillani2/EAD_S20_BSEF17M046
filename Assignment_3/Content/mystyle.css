@@ -1,0 +1,28 @@
+input[type=text]:focus{
+    border-color: dodgerblue;
+    box-shadow: 0px 0px 8px 0px dodgerblue;
+
+}
+input[type=password]:focus{
+    border-color: dodgerblue;
+    box-shadow: 0px 0px 8px 0px dodgerblue;
+}
+.inputWithIcon{
+    position: relative;
+}
+.inputWithIcon i{
+    position: absolute;
+    left: 38%;
+    top:6px;
+    padding: 9px 8px;
+    color: #aaa;
+    transition: 3s;
+}
+.inputWithIcon input[type=text]:focus + i{
+    color: dodgerblue;
+}
+.inputWithIcon input[type=password]:focus + i{
+    color: dodgerblue;
+}
+
+
