@@ -46,7 +46,7 @@ namespace Assignment3.DAL
                 using (DBHelper helper = new DBHelper())
                 {
                     String query;
-                    query = String.Format("Select count(*) from users where login='{0}'", dto.login);
+                    query = String.Format("Select count(*) from user where Login='{0}'", dto.login);
                     
                     var result = Convert.ToInt32(helper.ExecuteScalar(query));
                     if (result == 1)
@@ -55,7 +55,7 @@ namespace Assignment3.DAL
                     }
                     else
                     {
-                        query = String.Format("insert into users (login, name, password) values('{0}','{1}','{2}')", dto.login, dto.name, dto.password);
+                        query = String.Format("insert into user (Login, Name, Password) values('{0}','{1}','{2}')", dto.login, dto.name, dto.password);
                         result = helper.ExecuteNonQuery(query);
                         if ((int)result == 1)
                         {
