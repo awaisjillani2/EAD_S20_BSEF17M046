@@ -1,0 +1,111 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#signup").click(function () {
+            //debugger;
+            if ($("#login").val().trim() == "" || $("#name").val().trim() == "" || $("#password").val().trim() == "" || $("#cpassword").val().trim() == "") {
+                alert("Please fill all the fields.");
+                event.preventDefault();
+                return false;
+            }
+            else if ($("#password").val().trim() != $("#cpassword").val().trim()) {
+                alert("Passwords do not match.");
+                event.preventDefault();
+                return false;
+            }
+            var data = {};
+            data.name = $("#name").val();
+            data.login = $("#login").val();
+            data.password = $("#password").val();
+
+            let settings = {
+                type: "POST",
+                dataType: "json",
+                url: '@Url.Content("~/User/SaveUser")',
+                data: data,
+                success: function (resp)
+                {
+
+                    if (resp.res == -1) {
+                        $("#name").val("");
+                        document.getElementById("success").style.display = "none";
+                        let div = document.getElementById("statusContainer");
+                        div.innerHTML = "";
+                        div.innerHTML = "LOGIN ALREADY EXISTS!!"
+                        div.style.color = "red";
+                    }
+                    else if (resp.res == 1) {
+                        let div = document.getElementById("statusContainer");
+                        div.innerHTML = "";
+                        document.getElementById("success").style.display = "block";
+                        $("#name").val("");
+                        $("#login").val("");
+                        $("#password").val("");
+                        $("#cpassword").val("");
+                    }
+                    else
+                    {
+                        $("#name").val("");
+                        $("#login").val("");
+                        $("#password").val("");
+                        $("#cpassword").val("");
+                        document.getElementById("success").style.display = "none";
+                        let div = document.getElementById("statusContainer");
+                        div.innerHTML = "";
+                        div.innerHTML = "Something went wrong.Please Try Again!!";
+                        div.style.color = "red";
+                    }
+                },
+                error: function (e)
+                {
+                   alert("Something Went Wrong!!");
+                }
+            };
+            $.ajax(settings);
+            return false;
+
+        });
+    });
+</script>
+
+@*<div style="background-image: url('../../Content/waves.jpg');"
+     style="background-">*@
+    <div class="text-center">
+        <div class="mt-4 mb-3 text-center">
+            <img src="~/Content/signup.png" alt="login" class="rounded-circle" style="height: 25%; width: 12%">
+        </div>
+        <div class="inputWithIcon">
+            <input type="text" name="name" id="name" required placeholder="Name" class="w-25 p-2 font-weight-bold pl-5">
+            <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <br>
+        <div class="inputWithIcon">
+            <input type="text" name="login" id="login" required placeholder="Username" class="w-25 p-2 font-weight-bold pl-5">
+            <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <br>
+        <div class="inputWithIcon">
+            <input type="password" name="password" id="password" required placeholder="Password" class="w-25 p-2 font-weight-bold pl-5">
+            <i class="fa fa-lock fa-lg fa-fw"></i>
+        </div>
+        <br>
+        <div class="inputWithIcon">
+            <input type="password" name="cpassword" id="cpassword" required placeholder="Confirm Password" class="w-25 p-2 font-weight-bold pl-5">
+            <i class="fa fa-check fa-lg fa-fw"></i>
+        </div>
+        <br>
+        <button name="signup" type="submit" id="signup" class="btn-md p-2 btn-success mt-3 w-25 mb-2">Sign Up</button>
+        <br>
+        <div id="statusContainer" class="text-danger font-weight-bold"></div>
+        <div id="success" style="display: none">
+            <div class="font-weight-bold text-success font-weight-bold mt-3"><h3>CONGRATULATIONS! Account created successfully!!.</h3></div>
+            <a href='@Url.Content("~/User/Login")' class="text-info font-weight-bold">Proceed to Login Page?</a>
+
+        </div>
+    </div>
+</div>
