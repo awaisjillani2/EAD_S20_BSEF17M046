@@ -1,0 +1,10 @@
+/.vs
+/packages
+/Assignment_3/obj
+/Assignment_3/bin
+/Assignment3.BAL/obj
+/Assignment3.BAL/bin
+/Assignment3.DAL/obj
+/Assignment3.DAL/bin
+/Assignment3.Entities/obj
+/Assignment3.Entities/bin

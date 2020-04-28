@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+
+}
+
+
+
+<script>
+    let parent = 0;
+    function loadFolders() {
+        var data = {};
+        data.pId = parent;
+        let settings= {
+            type: "POST",
+            dataType: "json",
+            data: data,
+            url: '@Url.Content("~/Folder/GetFolders")',
+            success: function (resp) {
+                successFunc(resp.res);
+            },
+            error: function () {
+                alert("Failure");
+            }
+        };
+
+        $.ajax(settings);
+        return false;
+    }
+
+    function createFolders() {
+        debugger;
+        let p = document.getElementById("folderIdContainer");
+        var data = {};
+        data.fName = $("#folderName").val();
+        data.pId = p.innerHTML;
+        let settings= {
+            type: "POST",
+            dataType: "json",
+            url: '@Url.Content("~/Folder/SaveFolder")',
+            data: data,
+            success: function (resp) {
+                display(resp.res);
+            },
+            error: function () {
+                alert("Failure");
+            }
+        };
+        $('#myModal').modal('hide');
+        $('#folderName').val("");
+        $.ajax(settings);
+        return false;
+    }
+
+    function display(r) {
+        let p = document.getElementById("folderIdContainer");
+        let pId=p.innerHTML;
+        parent=pId;
+        loadFolders();
+    }
+
+    function showChildren(elem) {
+        debugger;
+        let id = $(elem).attr("id");
+        parent=id;
+        let div=document.getElementById("folderIdContainer");
+        div.innerHTML=parent;
+        loadFolders();
+    }
+
+    function successFunc(r) {
+        let result = r;
+        let data="";
+        for (let k in result) { 
+            let currentContent = "<div class='mt-1 p-1 bg-light font-weight-bold border border-secondary ml-auto mr-auto' style='width: 10%' onclick='highlight(this)' ondblclick='showChildren(this)' id='" + result[k].fId + "'><img src='/Content/folder.jpeg' style='height: 6%; width: 15%'>"+ result[k].fName + "</div>";
+            data = data + currentContent;
+        }
+        let myDiv = document.getElementById("container");
+        myDiv.innerHTML = data;
+    }
+
+    function highlight(ele) {
+        $(ele).css({ "background-color": "blue" });
+        $(ele).siblings().css({ "background-color": "white" });
+    }
+
+    $(document).ready(loadFolders());
+</script>
+
+    <body style="background-color: #F5F5F5">
+        <div class="text-center mt-3">
+            <img src="~/Content/favicon.ico" style="width: 5%; height: 7%">
+            <span class="font-weight-bold" style="font-size:large">HOME</span>
+        </div>
+        <div>
+            <div class="text-center">
+                <img src="~/Content/newFolder.png" style="width: 5%; height: 7%">
+                <button class="btn-info text-white p-2 font-weight-bold mt-4 mb-1" data-toggle="modal" data-target="#myModal" id="createNewFolderBtn">CREATE A NEW FOLDER</button>
+            </div>
+            <form action='@Url.Content("~/Folder/Logout")' method="post">
+                <div class="mb-5 text-center">
+                    <img src="~/Content/logout.png" style="width: 5%; height: 7%">
+
+                    <button class="btn-warning text-white p-2 font-weight-bold mt-4 mb-3" id="logOutButton" onclick="logOut()">LOG OUT</button>
+
+                </div>
+            </form>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="folderName" class="border border-info w-75 font-weight-bold p-1" placeholder="Type a name for your folder">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-primary" id="createFolderBtn" onclick='createFolders()'>Create</button>
+                        <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="container"></div>
+        <div id="folderIdContainer" class="text-white" hidden>0</div>
+    </body>
+

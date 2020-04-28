@@ -1,0 +1,25 @@
+﻿@{
+
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<body style="background-color: whitesmoke">
+    <form class="text-center" action='@Url.Content("~/User/Login")' method="post">
+        <div class="mt-5 mb-3 text-center">
+            <img src="~/Content/login.png" alt="login" class="rounded-circle" style="height: 15%; width: 15%">
+        </div>
+        <div class="inputWithIcon">
+            <label for="login">Enter username</label>
+            <input type="text" name="login" value="@ViewBag.login" id="login" required class="w-25 p-2 font-weight-bold pl-5" >
+        </div>
+        <br>
+        <div class="inputWithIcon">
+            <label for="password">Enter Password</label>
+            <input type="password" name="password" id="password" required class="w-25 p-2 font-weight-bold pl-5">
+        </div>
+        <br>
+        <button name="loginBtn" type="submit" id="loginId" class="btn btn-success ">Log in</button>
+        <a href="~/User/SignUp" class="font-weight-bold">Not Registered yet? Make account now.</a>
+        <div class="text-danger font-weight-bold" id="errorContainer">@ViewBag.errorMsg</div>
+    </form>
+</body>
