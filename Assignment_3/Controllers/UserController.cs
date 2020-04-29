@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Assignment3.BAL;
 using Assignment3.Entities;
 using Assignment_3.Security;
-
+using TokenGeneration;
 
 namespace Assignment_3.Controllers
 {
@@ -32,6 +32,9 @@ namespace Assignment_3.Controllers
             var result = UserBO.ValidateUser(login, password);
             if (result != null)
             {
+                TokenGenerator obj = new TokenGenerator();
+                var token = obj.GetToken(login, result.name);
+                TempData["token"] = token;
                 ViewBag.errorMsg = "";
                 SessionManager.User = result;
                 return Redirect("~/User/Home");

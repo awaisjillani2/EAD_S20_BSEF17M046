@@ -385,6 +385,10 @@
       <Project>{33b3b426-7bdc-4446-b743-5f200e4dd8fa}</Project>
       <Name>Assignment3.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TokenGeneration\TokenGeneration.csproj">
+      <Project>{d68092eb-4670-4c35-8622-66dea1b2f54c}</Project>
+      <Name>TokenGeneration</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

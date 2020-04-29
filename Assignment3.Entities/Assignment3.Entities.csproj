@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FolderDTO.cs" />
+    <Compile Include="tokenDTO.cs" />
     <Compile Include="UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
